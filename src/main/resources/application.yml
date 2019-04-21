@@ -1,0 +1,33 @@
+# Data source tuning config
+spring:
+  application:
+    name: book-data-api
+  datasource:
+    tomcat:
+      max-wait: 10000
+      max-active: 10
+      initial-size: 5
+      max-idle: 5
+      min-idle: 1
+      test-while-idle: true
+      test-on-borrow: true
+      validation-query: SELECT 1 FROM DUAL
+    url: jdbc:mysql://localhost:3306/local
+    username: root
+    password: root
+  data:
+    rest:
+      basePath: /data-api
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+---
+spring:
+  profiles: local
+
+# Logging Config
+logging:
+  level:
+    root: INFO
